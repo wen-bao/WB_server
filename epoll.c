@@ -1,0 +1,59 @@
+#include "epoll.h"
+
+struct epoll_event *events;
+
+int wb_epoll_create(int flags) {
+    int epoll_fd = epoll_create1(flags);
+
+    if(epoll_fd == -1) {
+        return -1;
+    }
+
+    events = (struct epoll_event *)malloc(sizeof(struct epoll_event) * MAXEVENTS);
+    return epoll_fd;
+}
+
+
+int wb_epoll_add(int epoll_fd, int fd, wb_http_request_t *request, int events) {
+    struct epoll_event event;
+    event.data.ptr  = (void *)request;
+    event.events    = events;
+    int ret = epoll_ctl(epoll_fd, EPOLL_CTL_ADD, fd, &event);
+    if(ret == -1) {
+        return -1;
+    }
+}
+
+int wb_epoll_mod(int epoll_fd, int fd, wb_http_request_t *request, int events) {
+    struct epoll_event event;
+    event.data.ptr = (void *)request;
+    event.events = events;
+    int ret = epoll_ctl(epoll_fd, EPOLL_CTL_MOD, fd, &event);
+    if(ret == -1) {
+        return -1;
+    }
+}
+
+int wb_epoll_wait(int epoll_fd, struct epoll_event *events, int max_events, int timeout) {
+    int ret_count = epoll_wait(epoll_fd, events, max_events, timeout);
+    return ret_count;
+}
+
+void wb_handle_events(int epoll_fd, int listen_fd, struct epoll_event *events, int events_num, char *path, wb_threadpool_t *tp) {
+    for(int i = 0; i < events_num; ++i) {
+        wb_http_request_t *request = (wb_http_request_t *)(events[i].data.ptr);
+        int fd = request->fd;
+
+        if(fd == listen_fd) {
+            accept_connection(listen_fd, epoll_fd, path);
+        } else {
+            if((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP) || (!(events[i].events & EPOLLIN))) {
+                close(fd);
+                continue;
+            }
+
+            int rc = threadpool_add(tp, do_request, events[i].data.ptr);
+
+        }
+    }
+}

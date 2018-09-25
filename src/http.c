@@ -24,7 +24,7 @@ static void parse_uri(char *uri_start, int uri_length, char *filename, char *que
     if(filename[strlen(filename) - 1] == '/') {
         strcat(filename, "index.html");
     }
-    printf("%s\n", filename);
+    //printf("%s\n", filename);
     return ;
 }
 

@@ -89,6 +89,7 @@ int wb_http_close_conn(wb_http_request_t *request);
 int wb_init_request_t(wb_http_request_t *request, int fd, int epoll_fd, char *path);
 int wb_init_out_t(wb_http_out_t *out, int fd);
 const char *get_shortmsg_from_status_code(int status_code);
+static int wb_http_process_if_modified_since(wb_http_request_t *request, wb_http_out_t *out, char *data, int len);
 
 
 #endif // !HTTP_REQUEST_H

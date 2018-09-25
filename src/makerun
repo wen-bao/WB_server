@@ -1,1 +1,0 @@
-gcc -g -o WBrun init.c run.c

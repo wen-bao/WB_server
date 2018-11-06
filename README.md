@@ -15,6 +15,8 @@ make
 
 ## 相关介绍
 
-wb.conf：配置文件
+wb.conf:配置文件
 
-WWW：根目录
+WWW:根目录
+
+wb:运行程序

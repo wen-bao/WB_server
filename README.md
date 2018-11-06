@@ -2,6 +2,10 @@
 
 Web Server
 
+## 介绍
+
+C语言实现web server
+
 ## 使用方法：
 
 ```shell
@@ -11,6 +15,6 @@ make
 
 ## 相关介绍
 
-wb.conf：是配置文件
+wb.conf：配置文件
 
-WWW：为根目录
+WWW：根目录

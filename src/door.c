@@ -3,7 +3,7 @@
 #include "http_request.h"
 
 
-#define DEFAULT_CONFIG "../wb.conf"
+#define DEFAULT_CONFIG "./wb.conf"
 
 extern struct epoll_event *events;
 
@@ -14,7 +14,7 @@ wb_conf_t conf;
 int main(int argc, char **argv) {
 
     read_conf(conf_file, &conf);
-    //printf("root:%s\nport:%d\nthread_num:%d\n", conf.root, conf.port, conf.thread_num);
+   // printf("root:%s\nport:%d\nthread_num:%d\n", conf.root, conf.port, conf.thread_num);
 
     handle_for_sigpipe();
 

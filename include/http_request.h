@@ -1,9 +1,6 @@
 #ifndef HTTP_REQUEST_H
 #define HTTP_REQUEST_H
 
-#include "list.h"
-#include "util.h"
-
 #include <errno.h>
 #include <time.h>
 #include <math.h>
@@ -11,6 +8,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "list.h"
 
 
 #define WB_HTTP_PARSE_INVALID_METHOD  10

@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 #include <signal.h>
 #include <sys/param.h>
@@ -19,11 +21,16 @@ void init_daemon(void) {
 	} else if(pid < 0) {
 		exit(1);
 	}
-	system("/opt/WB/./WB");
+	system("./build/door");
 	for(int i = 0; i < NOFILE; ++i) {
 		close(i);
 	}
 	chdir("/");
 	umask(0);
 	return;
+}
+
+int main() {
+	init_daemon();
+	return 0;
 }

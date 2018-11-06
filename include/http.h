@@ -8,12 +8,11 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#include "epoll.h"
-#include "timer.h"
 #include "http_request.h"
-#include "http_parse.h"
-#include "rio.h"
-#include "util.h"
+#include "timer.h"
+#include "epoll.h"
+#include "list.h"
+#include "priority_queue.h"
 
 #define MAXLINE     8192
 #define SHORTLINE   512

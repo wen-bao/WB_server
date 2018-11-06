@@ -1,6 +1,9 @@
 #ifndef HTTP_PARSE_H
 #define HTTP_PARSE_H
 
+#include "http_request.h"
+#include "http.h"
+
 #define CR '\r'
 #define LF '\n'
 

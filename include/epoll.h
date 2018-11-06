@@ -2,8 +2,11 @@
 #define EPOLL_H
 
 #include <sys/epoll.h>
+#include "util.h"
+#include "http_request.h"
 #include "threadpool.h"
 #include "http.h"
+#include "priority_queue.h"
 
 #define MAXEVENTS 1024
 

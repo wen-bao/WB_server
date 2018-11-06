@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include "http.h"
-#include "threadpool.h"
+#include "epoll.h"
+#include "http_request.h"
 
-#define DEFAULT_CONFIG "wb.conf"
+
+#define DEFAULT_CONFIG "../wb.conf"
 
 extern struct epoll_event *events;
 
